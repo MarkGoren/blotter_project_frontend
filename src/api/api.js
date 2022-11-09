@@ -1,3 +1,21 @@
 export default class Api {
-  static getPlaylists() {}
+  static getPlaylists() {
+    return fetch(`http://localhost:3000/playlists/getAll`, {
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      });
+  }
+
+  static getByCategory(category) {
+    return fetch(`http://localhost:3000/playlists/category/${category}`, {
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      });
+  }
 }

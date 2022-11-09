@@ -42,3 +42,57 @@
   height: auto;
   margin-right: 1.5rem;
 }
+
+#web-footer {
+  background-color: black;
+  padding: 1rem 0;
+  margin-top: 100%;
+  width: 100vw;
+  /* height: 13%; */
+  color: white;
+  position: sticky;
+  bottom: 0;
+}
+
+.category-imgs {
+  width: 7rem;
+  height: auto;
+  margin-top: 3.8rem;
+  /* border-style: solid;
+  border-width: 0.1rem; */
+}
+
+.category-button {
+  border-style: none;
+  background-color: white;
+  cursor: pointer;
+}
+
+.page-title {
+  margin-top: 4rem;
+  font-size: 1.4rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.playlists-frames {
+  box-shadow: -3px 2px 14px 4px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: -3px 2px 14px 4px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -3px 2px 14px 4px rgba(0, 0, 0, 0.75);
+}
+
+.about-us-content {
+  margin-top: 2rem;
+  font-size: large;
+}
+
+.web-links {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.web-links:hover {
+  color: black;
+}
