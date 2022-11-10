@@ -13,12 +13,24 @@ export default function BlotterNavbar() {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/new">What's New?</Nav.Link>
-            <Nav.Link href="/favorites">Favorites</Nav.Link>
-            <Nav.Link href="/reqPromo">Request Promo</Nav.Link>
-            <Nav.Link href="/userPromos">Your Promos</Nav.Link>
-            <Nav.Link href="/subscribe">Subscribe</Nav.Link>
-            <Nav.Link href="/aboutUs">About Us</Nav.Link>
+            <Nav.Link className="nav-link" href="/whatsNew">
+              What's New?
+            </Nav.Link>
+            <Nav.Link className="nav-link" href="/favorites">
+              Favorites
+            </Nav.Link>
+            <Nav.Link className="nav-link" href="/reqPromo">
+              Request Promo
+            </Nav.Link>
+            <Nav.Link className="nav-link" href="/userPromos">
+              Your Promos
+            </Nav.Link>
+            <Nav.Link className="nav-link" href="/subscribe">
+              Subscribe
+            </Nav.Link>
+            <Nav.Link className="nav-link" href="/aboutUs">
+              About Us
+            </Nav.Link>
           </Nav>
           <Nav>
             <Nav.Link href="#deets">Login</Nav.Link>

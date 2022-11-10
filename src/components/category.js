@@ -14,18 +14,18 @@ export default function Category() {
       <Container>
         <div className="page-title">{category}</div>
         <Row>
-          {playlists
-            .sort((a, b) => a.name.localeCompare(b.name))
-            .map((playlist) => (
-              <Col
-                className="playlists"
-                style={{
-                  display: "flex",
-                  alignContent: "center",
-                  justifyContent: "center",
-                  marginTop: "3rem",
-                }}
-              >
+          {playlists.map((playlist) => (
+            <Col
+              className="playlists flex-column"
+              style={{
+                display: "flex",
+                alignContent: "center",
+                justifyContent: "center",
+                marginTop: "3rem",
+              }}
+            >
+              <div className="playlist-genre">{playlist.name}</div>
+              <div>
                 <iframe
                   className="playlists-frames"
                   title={`playlist${playlist.id}`}
@@ -38,8 +38,9 @@ export default function Category() {
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                   loading="lazy"
                 ></iframe>
-              </Col>
-            ))}
+              </div>
+            </Col>
+          ))}
         </Row>
       </Container>
     </>
