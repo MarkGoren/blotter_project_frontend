@@ -18,4 +18,14 @@ export default class Api {
         return data;
       });
   }
+
+  static getNewPlaylists() {
+    return fetch(`http://localhost:3000/playlists/whatsNew`, {
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      });
+  }
 }

@@ -82,6 +82,14 @@
   -moz-box-shadow: -3px 2px 14px 4px rgba(0, 0, 0, 0.75);
 }
 
+.playlist-genre {
+  font-size: 1.1rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
 .about-us-content {
   margin-top: 2rem;
   font-size: large;
@@ -95,4 +103,8 @@
 
 .web-links:hover {
   color: black;
+}
+
+.nav-link {
+  margin: 0 0.3rem;
 }

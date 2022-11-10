@@ -8,7 +8,7 @@ export default function Home(props) {
   return (
     <>
       <Container className="home-page">
-        <div className="page-title">CHOOSE A CATEGORY</div>
+        <div className="page-title">choose a category</div>
         <Row>
           <Col>
             <a href="/category/techno">
