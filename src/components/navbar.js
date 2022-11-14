@@ -1,9 +1,11 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import logo from "../web_imgs/blotter_logo.png";
 
 export default function BlotterNavbar() {
+  const location = useLocation();
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
       <Container>
@@ -33,10 +35,17 @@ export default function BlotterNavbar() {
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="#deets">Login</Nav.Link>
-            <Nav.Link href="#memes" style={{ color: "black" }}>
-              Register
-            </Nav.Link>
+            <Nav.Link href="/login">Login</Nav.Link>
+            <Nav.Item style={{ marginTop: "0.5rem", marginLeft: "0.2rem" }}>
+              <Link
+                to="/register"
+                style={{ color: "black", textDecoration: "none" }}
+                state={{ background: location }}
+              >
+                Register
+              </Link>
+            </Nav.Item>
+            <Outlet />
           </Nav>
         </Navbar.Collapse>
       </Container>
