@@ -28,4 +28,25 @@ export default class Api {
         return data;
       });
   }
+
+  static async registerUser(userInfo) {
+    await fetch("http://localhost:3000/users/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userInfo),
+      credentials: "include",
+    })
+      .then((res) => res)
+      .catch((err) => console.log(err));
+  }
+
+  static userExists(userInfo) {
+    return fetch(`http://localhost:3000/users/exists/${userInfo.email}`, {
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      });
+  }
 }

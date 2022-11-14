@@ -11,9 +11,8 @@ export default function WhatsNew() {
     <Container>
       <div className="page-title">what's new?</div>
       <Row>
-        {playlists
-          //   .sort((a, b) => a.name.localeCompare(b.name))
-          .map((playlist) => (
+        {playlists ? (
+          playlists.map((playlist) => (
             <Col
               className="playlists flex-column"
               style={{
@@ -41,7 +40,10 @@ export default function WhatsNew() {
                 ></iframe>
               </div>
             </Col>
-          ))}
+          ))
+        ) : (
+          <div>Nothing New Just Yet...</div>
+        )}
       </Row>
     </Container>
   );
