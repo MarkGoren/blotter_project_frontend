@@ -11,7 +11,7 @@ export default function WhatsNew() {
     <Container>
       <div className="page-title">what's new?</div>
       <Row>
-        {playlists ? (
+        {playlists[0] ? (
           playlists.map((playlist) => (
             <Col
               className="playlists flex-column"
@@ -42,7 +42,9 @@ export default function WhatsNew() {
             </Col>
           ))
         ) : (
-          <div>Nothing New Just Yet...</div>
+          <div style={{ margin: "7rem 0", fontSize: "1.2rem" }}>
+            nothing new just yet...
+          </div>
         )}
       </Row>
     </Container>

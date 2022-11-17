@@ -113,11 +113,11 @@
   margin: 0 0.3rem;
 }
 
-.register-modal {
+.register-login-modal {
   margin-top: 3rem;
 }
 
-.register-input {
+.register-login-input {
   text-align: center;
   margin: 0.4rem 0;
   padding: 7px;
@@ -134,17 +134,17 @@
   width: 29rem;
 }
 
-.register-input:focus {
+.register-login-input:focus {
   outline: none;
 }
 
-.register-title {
+.register-login-title {
   font-size: x-large;
   font-family: "Raleway", sans-serif;
   font-weight: bold;
 }
 
-.register-button {
+.register-login-button {
   background-color: #000000;
   border-radius: 30px;
   border: 2px solid #000000;
@@ -176,4 +176,10 @@
   font-size: small;
   color: rgb(181, 10, 10);
   margin: 0;
+}
+
+.fa-user {
+  color: black;
+  font-size: 1.3rem;
+  margin-left: 1rem;
 }
