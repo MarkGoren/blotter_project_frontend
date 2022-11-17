@@ -1,12 +1,14 @@
 import { Modal, CloseButton } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import Api from "../api/api";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
 
-export default function Register() {
+export default function Register(props) {
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const location = useLocation();
   const {
     register,
     formState: { errors },
@@ -21,20 +23,33 @@ export default function Register() {
     },
   });
 
+  useEffect(() => {
+    if (Cookies.get("userInfo")) {
+      navigate("/");
+    }
+  });
+
   function handleRegister(userInfo) {
     Api.userExists(userInfo).then((data) => {
       if (data[0]) {
         setMessage("⚠ user already exists");
       } else {
-        Api.registerUser(userInfo);
+        Api.registerUser(userInfo).then(() => {
+          Api.userLogin(userInfo).then(() => {
+            props.setUserInfo(JSON.parse(Cookies.get("userInfo").slice(2)));
+            navigate(-1);
+          });
+        });
       }
     });
   }
   return (
-    <Modal className="register-modal" show={true}>
+    <Modal className="register-login-modal" show={true}>
       <Modal.Header>
-        <Modal.Title className="register-title fw-bold">Sign Up!</Modal.Title>
-        <CloseButton onClick={() => navigate(-1)} />
+        <Modal.Title className="register-login-title fw-bold">
+          Sign Up!
+        </Modal.Title>
+        <CloseButton onClick={() => navigate("/")} />
       </Modal.Header>
 
       <Modal.Body>
@@ -46,7 +61,7 @@ export default function Register() {
           <input
             type={"email"}
             placeholder={"Email"}
-            className="register-input"
+            className="register-login-input"
             {...register("email", {
               required: "⚠ email is required",
               pattern: {
@@ -59,7 +74,7 @@ export default function Register() {
           <input
             type={"email"}
             placeholder={"Repeat Email"}
-            className="register-input"
+            className="register-login-input"
             {...register("email_repeat", {
               validate: (value) => {
                 if (value !== watch("email")) {
@@ -72,7 +87,7 @@ export default function Register() {
           <input
             type={"password"}
             placeholder={"Password"}
-            className="register-input"
+            className="register-login-input"
             {...register("password", {
               required: "⚠ password is required",
               minLength: {
@@ -85,7 +100,7 @@ export default function Register() {
           <input
             type={"password"}
             placeholder={"Repeat Password"}
-            className="register-input"
+            className="register-login-input"
             {...register("password_repeat", {
               validate: (value) => {
                 if (watch("password") !== value) {
@@ -96,7 +111,7 @@ export default function Register() {
           ></input>
           <p className="error-message">{errors.password_repeat?.message}</p>
           <p className="error-message">{message}</p>
-          <button className="register-button" type="submit">
+          <button className="register-login-button" type="submit">
             Register
           </button>
         </form>
@@ -105,7 +120,11 @@ export default function Register() {
       <Modal.Footer className="d-flex flex-column">
         <div>
           already registered?
-          <Link to={"/login"} className="login-link">
+          <Link
+            to={"/login"}
+            className="login-link"
+            state={{ background: location }}
+          >
             {" "}
             login here
           </Link>

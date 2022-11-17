@@ -49,4 +49,15 @@ export default class Api {
         return data;
       });
   }
+
+  static async userLogin(loginInfo) {
+    await fetch("http://localhost:3000/users/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loginInfo),
+      credentials: "include",
+    })
+      .then((res) => res)
+      .catch((err) => console.log(err));
+  }
 }

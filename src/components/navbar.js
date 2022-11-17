@@ -4,7 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import logo from "../web_imgs/blotter_logo.png";
 
-export default function BlotterNavbar() {
+export default function BlotterNavbar(props) {
   const location = useLocation();
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -35,16 +35,41 @@ export default function BlotterNavbar() {
             </Nav.Link>
           </Nav>
           <Nav>
-            <Nav.Link href="/login">Login</Nav.Link>
-            <Nav.Item style={{ marginTop: "0.5rem", marginLeft: "0.2rem" }}>
-              <Link
-                to="/register"
-                style={{ color: "black", textDecoration: "none" }}
-                state={{ background: location }}
-              >
-                Register
-              </Link>
-            </Nav.Item>
+            {props.userInfo ? (
+              <Nav.Item>
+                <Link
+                  to="/logout"
+                  style={{ color: "grey", textDecoration: "none" }}
+                  state={{ background: location }}
+                >
+                  <span style={{ textTransform: "capitalize" }}>
+                    {props.userInfo.username}
+                  </span>
+                  <i className="fa fa-user" aria-hidden="true"></i>
+                </Link>
+              </Nav.Item>
+            ) : (
+              <>
+                <Nav.Item style={{ margin: "0 0.5rem 0 0.5rem" }}>
+                  <Link
+                    to="/login"
+                    style={{ color: "grey", textDecoration: "none" }}
+                    state={{ background: location }}
+                  >
+                    Login
+                  </Link>
+                </Nav.Item>
+                <Nav.Item style={{ margin: "0 0.5rem 0 0.5rem" }}>
+                  <Link
+                    to="/register"
+                    style={{ color: "black", textDecoration: "none" }}
+                    state={{ background: location }}
+                  >
+                    Register
+                  </Link>
+                </Nav.Item>
+              </>
+            )}
             <Outlet />
           </Nav>
         </Navbar.Collapse>

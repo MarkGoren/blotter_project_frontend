@@ -7,16 +7,35 @@ import Category from "./components/category";
 import AboutUs from "./components/aboutUs";
 import WhatsNew from "./components/whatsNew";
 import Register from "./components/register";
+import Login from "./components/login";
+import { useEffect, useState } from "react";
+import Cookies from "js-cookie";
+import Logout from "./components/logout";
 
 function App() {
   const location = useLocation();
   const background = location.state && location.state.background;
+  const [userInfo, setUserInfo] = useState("");
+
+  useEffect(() => {
+    if (Cookies.get("userInfo")) {
+      setUserInfo(JSON.parse(Cookies.get("userInfo").slice(2)));
+    } else {
+      setUserInfo("");
+    }
+  }, []);
   return (
     <div className="App">
-      <BlotterNavbar />
+      <BlotterNavbar userInfo={userInfo} />
       <Routes location={background || location}>
         <Route path="/" element={<Home />}>
           <Route path="/register" element={<Register />} />
+        </Route>
+        <Route path="/" element={<Home />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+        <Route path="/" element={<Home />}>
+          <Route path="/logout" element={<Logout />} />
         </Route>
         <Route path="/category/:category" element={<Category />} />
         <Route path="/aboutUs" element={<AboutUs />} />
@@ -25,7 +44,23 @@ function App() {
       <Footer />
       {background && (
         <Routes>
-          <Route path="/register" element={<Register />} />
+          <Route
+            path="/register"
+            element={<Register setUserInfo={setUserInfo} />}
+          />
+        </Routes>
+      )}
+      {background && (
+        <Routes>
+          <Route path="/login" element={<Login setUserInfo={setUserInfo} />} />
+        </Routes>
+      )}
+      {background && (
+        <Routes>
+          <Route
+            path="/logout"
+            element={<Logout setUserInfo={setUserInfo} />}
+          />
         </Routes>
       )}
     </div>
