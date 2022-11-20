@@ -44,7 +44,7 @@ export default function Login(props) {
         <Modal.Title className="register-login-title fw-bold">
           Login!
         </Modal.Title>
-        <CloseButton onClick={() => navigate("/")} />
+        <CloseButton onClick={() => navigate(-1)} />
       </Modal.Header>
 
       <Modal.Body>
