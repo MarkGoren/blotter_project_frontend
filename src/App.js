@@ -11,15 +11,21 @@ import Login from "./components/login";
 import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import Logout from "./components/logout";
+import Api from "./api/api";
+import Favorites from "./components/favorites";
 
 function App() {
   const location = useLocation();
   const background = location.state && location.state.background;
   const [userInfo, setUserInfo] = useState("");
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     if (Cookies.get("userInfo")) {
       setUserInfo(JSON.parse(Cookies.get("userInfo").slice(2)));
+      Api.getFavorites(JSON.parse(Cookies.get("userInfo").slice(2))).then(
+        (data) => setFavorites(data)
+      );
     } else {
       setUserInfo("");
     }
@@ -37,9 +43,15 @@ function App() {
         <Route path="/" element={<Home />}>
           <Route path="/logout" element={<Logout />} />
         </Route>
-        <Route path="/category/:category" element={<Category />} />
+        <Route
+          path="/category/:category"
+          element={
+            <Category favorites={favorites} setFavorites={setFavorites} />
+          }
+        />
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/whatsNew" element={<WhatsNew />} />
+        <Route path="/favorites" element={<Favorites />}></Route>
       </Routes>
       <Footer />
       {background && (

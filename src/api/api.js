@@ -60,4 +60,49 @@ export default class Api {
       .then((res) => res)
       .catch((err) => console.log(err));
   }
+
+  static getFavorites(userInfo) {
+    return fetch(`http://localhost:3000/favorites/getAll/${userInfo.id}`, {
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      });
+  }
+
+  static getFavPlaylists(userInfo) {
+    return fetch(
+      `http://localhost:3000/favorites/getPlaylists/${userInfo.id}`,
+      {
+        credentials: "include",
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      });
+  }
+
+  static async addToFav(info) {
+    await fetch("http://localhost:3000/favorites/add", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(info),
+      credentials: "include",
+    })
+      .then((res) => res)
+      .catch((err) => console.log(err));
+  }
+
+  static async removeFromFav(info) {
+    await fetch("http://localhost:3000/favorites/remove", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(info),
+      credentials: "include",
+    })
+      .then((res) => res)
+      .catch((err) => console.log(err));
+  }
 }
