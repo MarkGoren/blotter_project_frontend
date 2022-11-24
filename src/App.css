@@ -160,6 +160,7 @@
   width: 12rem;
   justify-self: center;
   margin-top: 0.7rem;
+  margin-bottom: 0.7rem;
 }
 
 .login-link {
@@ -204,9 +205,46 @@
   margin-bottom: 0.5rem;
 }
 
-.favorites-message,
-.whats-new-message {
+.web-message,
+.web-message {
   margin-top: 2rem;
   font-family: "Raleway", sans-serif;
   font-size: large;
+}
+
+.promo-req-form {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  border: #000000 solid 0.3rem;
+  border-radius: 50px;
+}
+
+.form-title {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.5rem;
+  margin: 1rem 0;
+}
+
+.form-input {
+  margin: 0.5rem 0;
+}
+
+.input-title {
+  margin: 0 0.8rem;
+}
+
+.form-explain {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.3rem;
+  margin: 2rem 0;
+  padding: 0 5rem;
+}
+
+.content-line {
+  margin: 0.2rem 0;
+}
+
+.about-us-quote {
+  font-style: italic;
 }

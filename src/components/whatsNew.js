@@ -42,7 +42,7 @@ export default function WhatsNew() {
             </Col>
           ))
         ) : (
-          <div className="whats-new-message" style={{ marginTop: "2rem" }}>
+          <div className="web-message" style={{ marginTop: "2rem" }}>
             nothing new just yet...
           </div>
         )}

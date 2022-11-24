@@ -13,6 +13,7 @@ import Cookies from "js-cookie";
 import Logout from "./components/logout";
 import Api from "./api/api";
 import Favorites from "./components/favorites";
+import ReqPromo from "./components/reqPromo";
 
 function App() {
   const location = useLocation();
@@ -51,7 +52,8 @@ function App() {
         />
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/whatsNew" element={<WhatsNew />} />
-        <Route path="/favorites" element={<Favorites />}></Route>
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/reqPromo" element={<ReqPromo />} />
       </Routes>
       <Footer />
       {background && (
