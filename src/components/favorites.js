@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Api from "../api/api";
 import Cookies from "js-cookie";
+import { Link, useLocation } from "react-router-dom";
 
 export default function Favorites() {
+  const location = useLocation();
   const [favPlaylists, setFavPlaylists] = useState([]);
   const userInfo = Cookies.get("userInfo")
     ? JSON.parse(Cookies.get("userInfo").slice(2))
@@ -37,7 +39,9 @@ export default function Favorites() {
                 }}
               >
                 <div className="genre-and-like">
-                  <span className="playlist-genre">{playlist.name}</span>
+                  <span className="playlist-genre">
+                    {playlist.genre} - {playlist.name}
+                  </span>
 
                   <i
                     className="fa fa-heart like-button"
@@ -64,10 +68,23 @@ export default function Favorites() {
             ))}
           </Row>
         ) : (
-          <div className="favorites-message">
-            <div>No favorite playlists here yet...</div>
+          <div className="web-message">
+            <div style={{ fontSize: "1.3rem", margin: "1.3rem 0" }}>
+              No favorite playlists here yet...
+            </div>
             {Cookies.get("userInfo") ? null : (
-              <div>To save a playlist in Favorites login first!</div>
+              <div>
+                To save a playlist in Favorites you have to{" "}
+                <Link
+                  className="web-links"
+                  to="/login"
+                  style={{ color: "black", textDecoration: "none" }}
+                  state={{ background: location }}
+                >
+                  login
+                </Link>{" "}
+                first!
+              </div>
             )}
           </div>
         )}

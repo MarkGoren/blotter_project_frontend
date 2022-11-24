@@ -13,23 +13,30 @@ export default function AboutUs() {
         ></img>
       </div>
       <div className="about-us-content">
-        <div>Blotter™ is a place to find good quality Spotify playlists.</div>
-        <div>
+        <p className="content-line">
+          Blotter™ is a place to find good quality Spotify playlists.
+        </p>
+        <p className="content-line">
           By{" "}
           <a className="web-links" href="/subscribe">
             subscribing
           </a>{" "}
           to us you will get weekly news about new playlists with hand picked
           songs.
-        </div>
-        <div>
+        </p>
+        <p className="content-line">
           You can contribute to our playlists by{" "}
           <a className="web-links" href="/reqPromo">
             requesting song promotions
           </a>
           , we will gladly review your request in week time 😊
-        </div>
-        <div>We hope you'll find our service helpfull!</div>
+        </p>
+        <p>We hope you'll find our service helpfull!</p>
+        <p className="about-us-quote">
+          "If you don't already have tinnitus, you're not listening loud
+          enough."
+        </p>
+        <p className="about-us-quote">-Unknown</p>
       </div>
     </Container>
   );

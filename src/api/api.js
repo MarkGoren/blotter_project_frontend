@@ -105,4 +105,28 @@ export default class Api {
       .then((res) => res)
       .catch((err) => console.log(err));
   }
+
+  static getLastReqDate(userInfo) {
+    return fetch(
+      `http://localhost:3000/promoRequests/lastReqDate/${userInfo.id}`,
+      {
+        credentials: "include",
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      });
+  }
+
+  static async newReq(reqInfo) {
+    await fetch("http://localhost:3000/promoRequests/newReq", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(reqInfo),
+      credentials: "include",
+    })
+      .then((res) => res)
+      .catch((err) => console.log(err));
+  }
 }
