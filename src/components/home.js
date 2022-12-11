@@ -4,7 +4,7 @@ import rockCat from "../web_imgs/rock_cat.png";
 import metalCat from "../web_imgs/metal_cat.png";
 import rapCat from "../web_imgs/rap_cat.png";
 
-export default function Home(props) {
+export default function Home() {
   return (
     <>
       <Container className="home-page">

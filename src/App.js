@@ -14,6 +14,7 @@ import Logout from "./components/logout";
 import Api from "./api/api";
 import Favorites from "./components/favorites";
 import ReqPromo from "./components/reqPromo";
+import PromoReq from "./components/promoReq";
 
 function App() {
   const location = useLocation();
@@ -54,6 +55,7 @@ function App() {
         <Route path="/whatsNew" element={<WhatsNew />} />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/reqPromo" element={<ReqPromo />} />
+        <Route path="/promoReq" element={<PromoReq />} />
       </Routes>
       <Footer />
       {background && (

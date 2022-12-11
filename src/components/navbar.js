@@ -3,9 +3,13 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import logo from "../web_imgs/blotter_logo.png";
+import Cookies from "js-cookie";
 
 export default function BlotterNavbar(props) {
   const location = useLocation();
+  const userInfo = Cookies.get("userInfo")
+    ? JSON.parse(Cookies.get("userInfo").slice(2))
+    : undefined;
   return (
     <Navbar collapseOnSelect expand="lg" bg="light" variant="light">
       <Container>
@@ -14,26 +18,38 @@ export default function BlotterNavbar(props) {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="me-auto">
-            <Nav.Link className="nav-link" href="/whatsNew">
-              What's New?
-            </Nav.Link>
-            <Nav.Link className="nav-link" href="/favorites">
-              Favorites
-            </Nav.Link>
-            <Nav.Link className="nav-link" href="/reqPromo">
-              Request Promo
-            </Nav.Link>
-            <Nav.Link className="nav-link" href="/userPromos">
-              Your Promos
-            </Nav.Link>
-            <Nav.Link className="nav-link" href="/subscribe">
-              Subscribe
-            </Nav.Link>
-            <Nav.Link className="nav-link" href="/aboutUs">
-              About Us
-            </Nav.Link>
-          </Nav>
+          {userInfo && userInfo.isAdmin ? (
+            <Nav className="me-auto">
+              <Nav.Item className="admin-welcome">Welcome Back Admin!</Nav.Item>
+              <Nav.Link className="nav-link" href="/whatsNew">
+                What's New?
+              </Nav.Link>
+              <Nav.Link className="nav-link" href="/promoReq">
+                Pending Requests
+              </Nav.Link>
+            </Nav>
+          ) : (
+            <Nav className="me-auto">
+              <Nav.Link className="nav-link" href="/whatsNew">
+                What's New?
+              </Nav.Link>
+              <Nav.Link className="nav-link" href="/favorites">
+                Favorites
+              </Nav.Link>
+              <Nav.Link className="nav-link" href="/reqPromo">
+                Request Promo
+              </Nav.Link>
+              <Nav.Link className="nav-link" href="/userPromos">
+                Your Promos
+              </Nav.Link>
+              <Nav.Link className="nav-link" href="/subscribe">
+                Subscribe
+              </Nav.Link>
+              <Nav.Link className="nav-link" href="/aboutUs">
+                About Us
+              </Nav.Link>
+            </Nav>
+          )}
           <Nav>
             {props.userInfo ? (
               <Nav.Item>

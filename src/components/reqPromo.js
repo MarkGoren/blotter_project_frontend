@@ -8,31 +8,30 @@ import Api from "../api/api";
 
 export default function ReqPromo() {
   const daysLastSubmit = useRef();
-  daysLastSubmit.current = 8;
 
   const userInfo = Cookies.get("userInfo")
     ? JSON.parse(Cookies.get("userInfo").slice(2))
     : undefined;
 
-  function getDaysLastSubmit() {
-    if (userInfo) {
-      Api.getLastReqDate(userInfo).then((data) => {
-        if (data[0]) {
-          const dateNow = moment();
-          daysLastSubmit.current = dateNow.diff(
-            moment(data[0].request_date),
-            "days"
-          );
-        } else {
-          daysLastSubmit.current = 8;
-        }
-      });
-    } else {
+  function getDaysFromLastSubmit() {
+    if (!userInfo) {
       daysLastSubmit.current = 8;
+      return;
     }
+    Api.getLastReqDate(userInfo).then((data) => {
+      if (data[0]) {
+        const dateNow = moment();
+        daysLastSubmit.current = dateNow.diff(
+          moment(data[0].request_date),
+          "days"
+        );
+      } else {
+        daysLastSubmit.current = 8;
+      }
+    });
   }
 
-  useEffect(() => getDaysLastSubmit());
+  useEffect(() => getDaysFromLastSubmit());
 
   const location = useLocation();
   const {
@@ -49,7 +48,9 @@ export default function ReqPromo() {
 
   function reqSubmit(reqInfo) {
     reqInfo.userId = userInfo.id;
-    Api.newReq(reqInfo).then(() => getDaysLastSubmit());
+    Api.newReq(reqInfo)
+      .then(() => getDaysFromLastSubmit())
+      .then(() => window.location.reload());
   }
   return (
     <>
@@ -127,8 +128,7 @@ export default function ReqPromo() {
               </form>
             ) : (
               <div className="web-message">
-                Your submission is still pending, you can submit again in{" "}
-                {7 - daysLastSubmit.current} days!
+                You can submit again in {7 - daysLastSubmit.current} days!
               </div>
             )}
           </>

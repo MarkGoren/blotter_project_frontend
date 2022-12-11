@@ -10,6 +10,9 @@ export default function WhatsNew() {
   return (
     <Container>
       <div className="page-title">what's new?</div>
+      <div className="web-message">
+        Here you can discover new playlists or new tracks in playlists!
+      </div>
       <Row>
         {playlists[0] ? (
           playlists.map((playlist) => (
@@ -21,6 +24,7 @@ export default function WhatsNew() {
                 justifyContent: "center",
                 marginTop: "3rem",
               }}
+              id={playlist.id}
             >
               <div className="playlist-genre">
                 {playlist.genre} - {playlist.name}
