@@ -8,31 +8,30 @@ import Api from "../api/api";
 
 export default function ReqPromo() {
   const daysLastSubmit = useRef();
-  daysLastSubmit.current = 8;
 
   const userInfo = Cookies.get("userInfo")
     ? JSON.parse(Cookies.get("userInfo").slice(2))
     : undefined;
 
-  function getDaysLastSubmit() {
-    if (userInfo) {
-      Api.getLastReqDate(userInfo).then((data) => {
-        if (data[0]) {
-          const dateNow = moment();
-          daysLastSubmit.current = dateNow.diff(
-            moment(data[0].request_date),
-            "days"
-          );
-        } else {
-          daysLastSubmit.current = 8;
-        }
-      });
-    } else {
+  function getDaysFromLastSubmit() {
+    if (!userInfo) {
       daysLastSubmit.current = 8;
+      return;
     }
+    Api.getLastReqDate(userInfo).then((data) => {
+      if (data[0] && data[0].last_submit) {
+        const dateNow = moment();
+        daysLastSubmit.current = dateNow.diff(
+          moment(data[0].last_submit),
+          "days"
+        );
+      } else {
+        daysLastSubmit.current = 8;
+      }
+    });
   }
 
-  useEffect(() => getDaysLastSubmit());
+  useEffect(() => getDaysFromLastSubmit());
 
   const location = useLocation();
   const {
@@ -49,15 +48,19 @@ export default function ReqPromo() {
 
   function reqSubmit(reqInfo) {
     reqInfo.userId = userInfo.id;
-    Api.newReq(reqInfo).then(() => getDaysLastSubmit());
+    Api.newReq(reqInfo)
+      .then(() => getDaysFromLastSubmit())
+      .then(() => window.location.reload());
   }
   return (
     <>
       <Container>
-        <div className="page-title">request promotion</div>
+        <div className="page-title">
+          <h3>request promotion</h3>
+        </div>
         <div className="form-explain">
-          Here you can fill out a song promotion request bellow and if we find a
-          good place for your requested song in one of our playlists it will
+          Here you can fill out a track promotion request bellow and if we find
+          a good place for your requested track in one of our playlists it will
           show up there after 7 days.
         </div>
         {Cookies.get("userInfo") ? (
@@ -127,8 +130,7 @@ export default function ReqPromo() {
               </form>
             ) : (
               <div className="web-message">
-                Your submission is still pending, you can submit again in{" "}
-                {7 - daysLastSubmit.current} days!
+                You can submit again in {7 - daysLastSubmit.current} days!
               </div>
             )}
           </>

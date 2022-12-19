@@ -129,4 +129,49 @@ export default class Api {
       .then((res) => res)
       .catch((err) => console.log(err));
   }
+
+  static async adminLogin(loginInfo) {
+    await fetch("http://localhost:3000/admins/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(loginInfo),
+      credentials: "include",
+    })
+      .then((res) => res)
+      .catch((err) => console.log(err));
+  }
+
+  static getAllRequests() {
+    return fetch(`http://localhost:3000/promoRequests/getAll`, {
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      });
+  }
+
+  static async processRequest(info) {
+    await fetch("http://localhost:3000/promoRequests/processRequest", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(info),
+      credentials: "include",
+    })
+      .then((res) => res)
+      .catch((err) => console.log(err));
+  }
+
+  static getAllUserPromoRequests(userInfo) {
+    return fetch(
+      `http://localhost:3000/userPromoPlaylists/getAll/${userInfo.id}`,
+      {
+        credentials: "include",
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      });
+  }
 }

@@ -11,7 +11,7 @@ export default function Favorites() {
     ? JSON.parse(Cookies.get("userInfo").slice(2))
     : undefined;
   useEffect(() => {
-    if (Cookies.get("userInfo")) {
+    if (userInfo) {
       Api.getFavPlaylists(userInfo).then((data) => setFavPlaylists(data));
     }
   }, [userInfo]);
@@ -25,8 +25,10 @@ export default function Favorites() {
   return (
     <>
       <Container>
-        <div className="page-title">Favorites</div>
-        {Cookies.get("userInfo") && favPlaylists[0] ? (
+        <div className="page-title">
+          <h3>Favorites</h3>
+        </div>
+        {userInfo && favPlaylists[0] ? (
           <Row>
             {favPlaylists.map((playlist) => (
               <Col
@@ -54,10 +56,12 @@ export default function Favorites() {
                   <iframe
                     className="playlists-frames"
                     title={`playlist${playlist.id}`}
-                    style={{ borderRadius: "12px" }}
+                    style={{
+                      borderRadius: "12px",
+                      width: "300px",
+                      height: "360px",
+                    }}
                     src={playlist.src}
-                    width="240"
-                    height="240"
                     frameBorder="0"
                     allowFullScreen={true}
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
@@ -74,7 +78,7 @@ export default function Favorites() {
             </div>
             {Cookies.get("userInfo") ? null : (
               <div>
-                To save a playlist in Favorites you have to{" "}
+                To view playlists in Favorites you have to{" "}
                 <Link
                   className="web-links"
                   to="/login"
