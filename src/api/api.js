@@ -161,4 +161,17 @@ export default class Api {
       .then((res) => res)
       .catch((err) => console.log(err));
   }
+
+  static getAllUserPromoRequests(userInfo) {
+    return fetch(
+      `http://localhost:3000/userPromoPlaylists/getAll/${userInfo.id}`,
+      {
+        credentials: "include",
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      });
+  }
 }

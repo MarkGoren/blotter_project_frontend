@@ -100,7 +100,7 @@ export default function PromoReq() {
     <>
       <Container>
         <div className="page-title" style={{ marginBottom: "3rem" }}>
-          Pending Promotion Requests
+          <h3>Pending Promotion Requests</h3>
         </div>
 
         <Row className="columns-promoReq">

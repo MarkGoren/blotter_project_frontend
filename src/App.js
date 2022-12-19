@@ -15,11 +15,13 @@ import Api from "./api/api";
 import Favorites from "./components/favorites";
 import ReqPromo from "./components/reqPromo";
 import PromoReq from "./components/promoReq";
+import UserPromos from "./components/userPromos";
+import Subscribe from "./components/subscribe";
 
 function App() {
   const location = useLocation();
   const background = location.state && location.state.background;
-  const [userInfo, setUserInfo] = useState("");
+  const [userInfo, setUserInfo] = useState({});
   const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
@@ -29,7 +31,7 @@ function App() {
         (data) => setFavorites(data)
       );
     } else {
-      setUserInfo("");
+      setUserInfo({});
     }
   }, []);
   return (
@@ -56,6 +58,8 @@ function App() {
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/reqPromo" element={<ReqPromo />} />
         <Route path="/promoReq" element={<PromoReq />} />
+        <Route path="/userPromos" element={<UserPromos />} />
+        <Route path="/subscribe" element={<Subscribe />} />
       </Routes>
       <Footer />
       {background && (

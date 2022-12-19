@@ -46,12 +46,13 @@
 #web-footer {
   background-color: black;
   padding: 1rem 0;
-  margin-top: 100%;
+  margin-top: 100vw;
   width: 100vw;
   /* height: 13%; */
   color: white;
-  position: sticky;
+  position: static;
   bottom: 0;
+  left: 0;
 }
 
 .category-imgs {
@@ -72,7 +73,6 @@
   margin-top: 4rem;
   font-size: 1.5rem;
   font-family: "Raleway", sans-serif;
-  font-weight: bold;
   text-transform: uppercase;
 }
 
@@ -182,7 +182,7 @@
 .fa-user {
   color: black;
   font-size: 1.3rem;
-  margin-left: 1rem;
+  margin-right: 0.7rem;
 }
 
 .like-button {

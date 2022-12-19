@@ -58,10 +58,10 @@ export default function BlotterNavbar(props) {
                   style={{ color: "grey", textDecoration: "none" }}
                   state={{ background: location }}
                 >
+                  <i className="fa fa-user" aria-hidden="true"></i>
                   <span style={{ textTransform: "capitalize" }}>
                     {props.userInfo.username}
                   </span>
-                  <i className="fa fa-user" aria-hidden="true"></i>
                 </Link>
               </Nav.Item>
             ) : (

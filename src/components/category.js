@@ -18,7 +18,7 @@ export default function Category(props) {
   }, [category]);
 
   function handleLike(e) {
-    if (Cookies.get("userInfo")) {
+    if (userInfo) {
       let info = { userId: userInfo.id, playlistId: e.target.id };
       if (props.favorites.indexOf(parseInt(e.target.id)) > -1) {
         Api.removeFromFav(info).then(() => {
@@ -36,7 +36,9 @@ export default function Category(props) {
   return (
     <>
       <Container>
-        <div className="page-title">{category}</div>
+        <div className="page-title">
+          <h3>{category}</h3>
+        </div>
         <Row>
           {playlists.map((playlist) => (
             <Col
@@ -70,10 +72,12 @@ export default function Category(props) {
                 <iframe
                   className="playlists-frames"
                   title={`playlist${playlist.id}`}
-                  style={{ borderRadius: "12px" }}
+                  style={{
+                    borderRadius: "12px",
+                    width: "300px",
+                    height: "360px",
+                  }}
                   src={playlist.src}
-                  width="240"
-                  height="240"
                   frameBorder="0"
                   allowFullScreen={true}
                   allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"

@@ -19,10 +19,10 @@ export default function ReqPromo() {
       return;
     }
     Api.getLastReqDate(userInfo).then((data) => {
-      if (data[0]) {
+      if (data[0] && data[0].last_submit) {
         const dateNow = moment();
         daysLastSubmit.current = dateNow.diff(
-          moment(data[0].request_date),
+          moment(data[0].last_submit),
           "days"
         );
       } else {
@@ -55,10 +55,12 @@ export default function ReqPromo() {
   return (
     <>
       <Container>
-        <div className="page-title">request promotion</div>
+        <div className="page-title">
+          <h3>request promotion</h3>
+        </div>
         <div className="form-explain">
-          Here you can fill out a song promotion request bellow and if we find a
-          good place for your requested song in one of our playlists it will
+          Here you can fill out a track promotion request bellow and if we find
+          a good place for your requested track in one of our playlists it will
           show up there after 7 days.
         </div>
         {Cookies.get("userInfo") ? (
