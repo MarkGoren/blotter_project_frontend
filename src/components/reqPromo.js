@@ -63,7 +63,7 @@ export default function ReqPromo() {
           a good place for your requested track in one of our playlists it will
           show up there after 7 days.
         </div>
-        {Cookies.get("userInfo") ? (
+        {userInfo ? (
           <>
             {daysLastSubmit.current >= 7 ? (
               <form

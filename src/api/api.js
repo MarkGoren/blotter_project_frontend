@@ -1,5 +1,5 @@
 export default class Api {
-  static getPlaylists() {
+  static async getPlaylists() {
     return fetch(`http://localhost:3000/playlists/getAll`, {
       credentials: "include",
     })
@@ -9,7 +9,7 @@ export default class Api {
       });
   }
 
-  static getByCategory(category) {
+  static async getByCategory(category) {
     return fetch(`http://localhost:3000/playlists/category/${category}`, {
       credentials: "include",
     })
@@ -19,7 +19,7 @@ export default class Api {
       });
   }
 
-  static getNewPlaylists() {
+  static async getNewPlaylists() {
     return fetch(`http://localhost:3000/playlists/whatsNew`, {
       credentials: "include",
     })
@@ -30,7 +30,7 @@ export default class Api {
   }
 
   static async registerUser(userInfo) {
-    await fetch("http://localhost:3000/users/register", {
+    return fetch("http://localhost:3000/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(userInfo),
@@ -40,7 +40,7 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
-  static userExists(userInfo) {
+  static async userExists(userInfo) {
     return fetch(`http://localhost:3000/users/exists/${userInfo.email}`, {
       credentials: "include",
     })
@@ -51,7 +51,7 @@ export default class Api {
   }
 
   static async userLogin(loginInfo) {
-    await fetch("http://localhost:3000/users/login", {
+    return fetch("http://localhost:3000/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(loginInfo),
@@ -61,7 +61,7 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
-  static getFavorites(userInfo) {
+  static async getFavorites(userInfo) {
     return fetch(`http://localhost:3000/favorites/getAll/${userInfo.id}`, {
       credentials: "include",
     })
@@ -71,7 +71,7 @@ export default class Api {
       });
   }
 
-  static getFavPlaylists(userInfo) {
+  static async getFavPlaylists(userInfo) {
     return fetch(
       `http://localhost:3000/favorites/getPlaylists/${userInfo.id}`,
       {
@@ -85,7 +85,7 @@ export default class Api {
   }
 
   static async addToFav(info) {
-    await fetch("http://localhost:3000/favorites/add", {
+    return fetch("http://localhost:3000/favorites/add", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(info),
@@ -96,7 +96,7 @@ export default class Api {
   }
 
   static async removeFromFav(info) {
-    await fetch("http://localhost:3000/favorites/remove", {
+    return fetch("http://localhost:3000/favorites/remove", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(info),
@@ -106,7 +106,7 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
-  static getLastReqDate(userInfo) {
+  static async getLastReqDate(userInfo) {
     return fetch(
       `http://localhost:3000/promoRequests/lastReqDate/${userInfo.id}`,
       {
@@ -120,7 +120,7 @@ export default class Api {
   }
 
   static async newReq(reqInfo) {
-    await fetch("http://localhost:3000/promoRequests/newReq", {
+    return fetch("http://localhost:3000/promoRequests/newReq", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(reqInfo),
@@ -131,7 +131,7 @@ export default class Api {
   }
 
   static async adminLogin(loginInfo) {
-    await fetch("http://localhost:3000/admins/login", {
+    return fetch("http://localhost:3000/admins/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(loginInfo),
@@ -141,7 +141,7 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
-  static getAllRequests() {
+  static async getAllRequests() {
     return fetch(`http://localhost:3000/promoRequests/getAll`, {
       credentials: "include",
     })
@@ -152,7 +152,7 @@ export default class Api {
   }
 
   static async processRequest(info) {
-    await fetch("http://localhost:3000/promoRequests/processRequest", {
+    return fetch("http://localhost:3000/promoRequests/processRequest", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(info),
@@ -162,7 +162,7 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
-  static getAllUserPromoRequests(userInfo) {
+  static async getAllUserPromoRequests(userInfo) {
     return fetch(
       `http://localhost:3000/userPromoPlaylists/getAll/${userInfo.id}`,
       {
@@ -173,5 +173,16 @@ export default class Api {
       .then((data) => {
         return data;
       });
+  }
+
+  static async userSubscribe(userInfo) {
+    return fetch("http://localhost:3000/users/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(userInfo),
+      credentials: "include",
+    })
+      .then((res) => res)
+      .catch((err) => console.log(err));
   }
 }
