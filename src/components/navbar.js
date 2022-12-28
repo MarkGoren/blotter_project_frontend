@@ -51,7 +51,7 @@ export default function BlotterNavbar(props) {
             </Nav>
           )}
           <Nav>
-            {props.userInfo ? (
+            {props.userInfo.id ? (
               <Nav.Item>
                 <Link
                   to="/logout"

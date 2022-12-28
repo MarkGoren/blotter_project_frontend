@@ -6,6 +6,7 @@ export default function Logout(props) {
   const navigate = useNavigate();
   function logout() {
     Cookies.remove("userInfo");
+    Cookies.remove("isSub");
     props.setUserInfo("");
     navigate(-1);
   }
