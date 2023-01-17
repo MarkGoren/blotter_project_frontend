@@ -7,3 +7,6 @@ For the Admin flow chart follow this link - https://viewer.diagrams.net/?tags=%7
 To see the user website mockup follow the link - https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&page-id=E7R1KE9g44JJiCHM3RZz&title=blotter_wireframe.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1KiScTMiEy5PshBc2AqPSMPUGn2xKYy9t%26export%3Ddownload
 
 To see the admin website mockup follow the link - https://viewer.diagrams.net/?tags=%7B%7D&highlight=0000ff&edit=_blank&layers=1&nav=1&page-id=BBwSVnYafq7nHqgCpbcE&title=blotter_wireframe_admin#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D14OlRGBQsJt7lWvmPqpLfygigb33Kn3sl%26export%3Ddownload
+
+Watch the demo website here:
+[<div><img src="https://i.ytimg.com/vi/oalhSzrlbaA/maxresdefault.jpg" width="50%"></div>](https://youtu.be/oalhSzrlbaA)
