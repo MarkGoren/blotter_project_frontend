@@ -1,5 +1,8 @@
 import Cookies from "js-cookie";
-import { Container } from "react-bootstrap";
+import { Accordion, Container } from "react-bootstrap";
+import AccordionBody from "react-bootstrap/esm/AccordionBody";
+import AccordionHeader from "react-bootstrap/esm/AccordionHeader";
+import AccordionItem from "react-bootstrap/esm/AccordionItem";
 import { useForm } from "react-hook-form";
 import { Link, useLocation } from "react-router-dom";
 import Api from "../api/api";
@@ -54,8 +57,42 @@ export default function Subscribe() {
               </div>
 
               <div className="web-message">
-                We hope you will enjoy our news letters
+                Check your email inbox with which you are registered so you
+                won't miss out on weekly Blotter newsletters!
               </div>
+
+              <Accordion style={{ margin: "1rem 0" }}>
+                <AccordionItem>
+                  <AccordionHeader eventKey="0">FAQs</AccordionHeader>
+                  <AccordionBody>
+                    <div className="faq-title">When do we send email?</div>
+                    <div>
+                      Emails are sent every week usually on the weekends, we
+                      don't have a constant time.
+                    </div>
+                    <br></br>
+
+                    <div className="faq-title">
+                      I can't find your email, what to do?
+                    </div>
+                    <div>
+                      If our email didn't get to your inbox you can try checking
+                      in the Socials section.
+                      <br></br>If the email doesn't appear there either check in
+                      the Spam section.
+                    </div>
+                    <br></br>
+
+                    <div className="faq-title">
+                      I keep recieving your email in spam, what to do?
+                    </div>
+                    <div>
+                      You will need to mark our email as not spam and as safe in
+                      the email settings in the mail that we sent.
+                    </div>
+                  </AccordionBody>
+                </AccordionItem>
+              </Accordion>
             </Container>
           ) : (
             <Container>
@@ -83,7 +120,7 @@ export default function Subscribe() {
                       required: "⚠ you have to agree to our terms to subscribe",
                     })}
                   ></input>
-                  <span>Agree!</span>
+                  <span>I Agree!</span>
                 </div>
                 <p className="error-message">{errors.agreement?.message}</p>
 

@@ -3,11 +3,13 @@ import { useForm } from "react-hook-form";
 import Cookies from "js-cookie";
 import { Link, useLocation } from "react-router-dom";
 import * as moment from "moment";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Api from "../api/api";
 
 export default function ReqPromo() {
   const daysLastSubmit = useRef();
+
+  const [link, setLink] = useState("");
 
   const userInfo = Cookies.get("userInfo")
     ? JSON.parse(Cookies.get("userInfo").slice(2))
@@ -52,6 +54,15 @@ export default function ReqPromo() {
       .then(() => getDaysFromLastSubmit())
       .then(() => window.location.reload());
   }
+
+  function displayLink(e) {
+    let pattern =
+      /(https?:\/\/open.spotify.com\/(track)\/[a-zA-Z0-9]+|spotify:(track):[a-zA-Z0-9])/;
+    if (pattern.test(e.target.value) || !e.target.value) {
+      let newLink = e.target.value;
+      setLink(newLink);
+    }
+  }
   return (
     <>
       <Container>
@@ -90,6 +101,7 @@ export default function ReqPromo() {
                 <div className="form-input">
                   <span className="input-title">Track Link:</span>
                   <input
+                    onInput={(e) => displayLink(e)}
                     style={{ width: "35vw" }}
                     type={"url"}
                     placeholder="https://open.spotify.com/track/example"
@@ -103,6 +115,23 @@ export default function ReqPromo() {
                     })}
                   ></input>
                   <p className="error-message">{errors.songLink?.message}</p>
+                  {link?.length ? (
+                    <div>
+                      <iframe
+                        className="track-frame"
+                        title="link1"
+                        style={{ borderRadius: "12px" }}
+                        src={`https://open.spotify.com/embed/track/${
+                          link.split("/")[4].split("?")[0]
+                        }?utm_source=generator`}
+                        width="285vw"
+                        height="80"
+                        frameBorder="0"
+                        allowFullscreen={true}
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                      ></iframe>
+                    </div>
+                  ) : null}
                 </div>
 
                 <div className="form-input">

@@ -185,4 +185,15 @@ export default class Api {
       .then((res) => res)
       .catch((err) => console.log(err));
   }
+
+  static async sendEmail(emailData) {
+    return fetch("http://localhost:3000/mail/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(emailData),
+      credentials: "include",
+    })
+      .then((res) => res)
+      .catch((err) => console.log(err));
+  }
 }
