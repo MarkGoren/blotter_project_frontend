@@ -21,8 +21,8 @@ export default function AboutUs() {
           <a className="web-links" href="/subscribe">
             subscribing
           </a>{" "}
-          to us you will get weekly news about new playlists with hand picked
-          songs.
+          to us you will get weekly news, updates and insights with hand picked
+          tracks.
         </p>
         <p className="content-line">
           You can contribute to our playlists by{" "}

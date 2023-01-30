@@ -27,6 +27,9 @@ export default function BlotterNavbar(props) {
               <Nav.Link className="nav-link" href="/promoReq">
                 Pending Requests
               </Nav.Link>
+              <Nav.Link className="nav-link" href="/subMail">
+                Email Promotion
+              </Nav.Link>
             </Nav>
           ) : (
             <Nav className="me-auto">

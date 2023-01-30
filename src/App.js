@@ -17,6 +17,7 @@ import ReqPromo from "./components/reqPromo";
 import PromoReq from "./components/promoReq";
 import UserPromos from "./components/userPromos";
 import Subscribe from "./components/subscribe";
+import SubMail from "./components/subMail";
 
 function App() {
   const location = useLocation();
@@ -60,6 +61,7 @@ function App() {
         <Route path="/promoReq" element={<PromoReq />} />
         <Route path="/userPromos" element={<UserPromos />} />
         <Route path="/subscribe" element={<Subscribe />} />
+        <Route path="/subMail" element={<SubMail />} />
       </Routes>
       <Footer />
       {background && (

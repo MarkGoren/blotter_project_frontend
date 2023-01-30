@@ -4,6 +4,7 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import Api from "../api/api";
 import SpotifyWebApi from "spotify-web-api-js";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export default function PromoReq() {
   const SpotifyApi = new SpotifyWebApi({
@@ -17,13 +18,11 @@ export default function PromoReq() {
   const RESPONSE_TYPE = "token";
   const [requests, setRequests] = useState([]);
   const [playlists, setPlaylists] = useState([]);
+  const navigate = useNavigate();
 
   const userInfo = Cookies.get("userInfo")
     ? JSON.parse(Cookies.get("userInfo").slice(2))
     : undefined;
-  if (!(userInfo && userInfo.isAdmin)) {
-    window.location.href = "http://localhost:3001";
-  }
 
   function checkTokenValidity() {
     SpotifyApi.getMe()
@@ -38,6 +37,10 @@ export default function PromoReq() {
   }
 
   useEffect(() => {
+    if (!(userInfo && userInfo.isAdmin)) {
+      navigate("/");
+      return;
+    }
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
 
