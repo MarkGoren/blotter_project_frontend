@@ -304,3 +304,9 @@
 .faq-title {
   font-weight: 600;
 }
+
+.register-message {
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 1.4rem;
+}

@@ -44,7 +44,7 @@ export default function Login(props) {
           props.setUserInfo(JSON.parse(Cookies.get("userInfo").slice(2)));
           navigate(-1);
         } else {
-          setMessage("⚠ email or password incorrect");
+          setMessage("⚠ email or password incorrect or unverified account");
         }
       });
     }

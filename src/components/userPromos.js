@@ -67,7 +67,7 @@ export default function UserPromos() {
               </Row>
             ))
           ) : (
-            <div className="web-message">No requests here yet</div>
+            <div className="web-message">No promotions here yet</div>
           )
         ) : (
           <div className="web-message">
