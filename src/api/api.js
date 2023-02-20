@@ -196,4 +196,26 @@ export default class Api {
       .then((res) => res)
       .catch((err) => console.log(err));
   }
+
+  static async sendResetPasswordEmail(email) {
+    return fetch("http://localhost:3000/users/sendResetPasswordEmail", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(email),
+      credentials: "include",
+    })
+      .then((res) => res)
+      .catch((err) => console.log(err));
+  }
+
+  static async changePassword(password) {
+    return fetch("http://localhost:3000/users/changePassword", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(password),
+      credentials: "include",
+    })
+      .then((res) => res)
+      .catch((err) => console.log(err));
+  }
 }

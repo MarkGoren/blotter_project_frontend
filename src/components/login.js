@@ -55,12 +55,12 @@ export default function Login(props) {
         <Modal.Title className="register-login-title fw-bold">
           Login!
         </Modal.Title>
-        <CloseButton onClick={() => navigate(-1)} />
+        <CloseButton onClick={() => navigate("/")} />
       </Modal.Header>
 
       <Modal.Body>
         <form
-          className="d-flex flex-column"
+          className="login-form"
           style={{ alignItems: "center" }}
           onSubmit={handleSubmit(handleLogin)}
         >
@@ -88,6 +88,13 @@ export default function Login(props) {
           ></input>
           <p className="error-message">{errors.password?.message}</p>
           <p className="error-message">{message}</p>
+          <Link
+            to={"/forgotPassword"}
+            state={{ background: location }}
+            className="forgot-password-link"
+          >
+            forgot password
+          </Link>
           <button className="register-login-button" type="submit">
             Login
           </button>

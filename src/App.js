@@ -18,6 +18,8 @@ import PromoReq from "./components/promoReq";
 import UserPromos from "./components/userPromos";
 import Subscribe from "./components/subscribe";
 import SubMail from "./components/subMail";
+import ForgotPassword from "./components/forgotPassword";
+import ChangePassword from "./components/changePassword";
 
 function App() {
   const location = useLocation();
@@ -48,6 +50,9 @@ function App() {
         <Route path="/" element={<Home />}>
           <Route path="/logout" element={<Logout />} />
         </Route>
+        <Route path="/" element={<Home />}>
+          <Route path="/forgotPassword" element={<ForgotPassword />} />
+        </Route>
         <Route
           path="/category/:category"
           element={
@@ -62,14 +67,12 @@ function App() {
         <Route path="/userPromos" element={<UserPromos />} />
         <Route path="/subscribe" element={<Subscribe />} />
         <Route path="/subMail" element={<SubMail />} />
+        <Route path="/changePassword" element={<ChangePassword />} />
       </Routes>
       <Footer />
       {background && (
         <Routes>
-          <Route
-            path="/register"
-            element={<Register setUserInfo={setUserInfo} />}
-          />
+          <Route path="/register" element={<Register />} />
         </Routes>
       )}
       {background && (
@@ -83,6 +86,11 @@ function App() {
             path="/logout"
             element={<Logout setUserInfo={setUserInfo} />}
           />
+        </Routes>
+      )}
+      {background && (
+        <Routes>
+          <Route path="/forgotPassword" element={<ForgotPassword />} />
         </Routes>
       )}
     </div>
