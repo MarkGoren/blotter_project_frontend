@@ -5,7 +5,7 @@ import Api from "../api/api";
 import { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
-export default function Register(props) {
+export default function Register() {
   const [message, setMessage] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ export default function Register(props) {
         <Modal.Title className="register-login-title fw-bold">
           Sign Up!
         </Modal.Title>
-        <CloseButton onClick={() => navigate(-1)} />
+        <CloseButton onClick={() => navigate("/")} />
       </Modal.Header>
 
       {isRegistered ? (
@@ -101,6 +101,11 @@ export default function Register(props) {
               className="register-login-input"
               {...register("password", {
                 required: "⚠ password is required",
+                pattern: {
+                  value: "^(?=.*[A-Za-z])(?=.*d)[A-Za-zd]{8,}$",
+                  message:
+                    "⚠ password must contain at least one number and letter",
+                },
                 minLength: {
                   value: 8,
                   message: "⚠ password must be at least 8 characters long",
