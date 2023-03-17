@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import Cookies from "js-cookie";
 import { Link, useLocation } from "react-router-dom";
 import * as moment from "moment";
@@ -10,6 +10,7 @@ export default function ReqPromo() {
   const daysLastSubmit = useRef();
 
   const [link, setLink] = useState("");
+  const [genres, setGenres] = useState([]);
 
   const userInfo = Cookies.get("userInfo")
     ? JSON.parse(Cookies.get("userInfo").slice(2))
@@ -19,8 +20,15 @@ export default function ReqPromo() {
     if (!userInfo) {
       daysLastSubmit.current = 8;
       return;
+    } else if (userInfo.last_submit) {
+      const dateNow = moment();
+      daysLastSubmit.current = dateNow.diff(
+        moment(userInfo.last_submit),
+        "days"
+      );
+      return;
     }
-    Api.getLastReqDate(userInfo).then((data) => {
+    Api.getLastReqDate().then((data) => {
       if (data[0] && data[0].last_submit) {
         const dateNow = moment();
         daysLastSubmit.current = dateNow.diff(
@@ -33,7 +41,10 @@ export default function ReqPromo() {
     });
   }
 
-  useEffect(() => getDaysFromLastSubmit());
+  useEffect(() => {
+    getDaysFromLastSubmit();
+    Api.getAllGenres().then((data) => setGenres(data));
+  });
 
   const location = useLocation();
   const {
@@ -49,7 +60,6 @@ export default function ReqPromo() {
   });
 
   function reqSubmit(reqInfo) {
-    reqInfo.userId = userInfo.id;
     Api.newReq(reqInfo)
       .then(() => getDaysFromLastSubmit())
       .then(() => window.location.reload());
@@ -90,10 +100,9 @@ export default function ReqPromo() {
                     })}
                   >
                     <option value={""}>Select</option>
-                    <option value={"techno"}>Techno</option>
-                    <option value={"rock"}>Rock</option>
-                    <option value={"rap"}>Rap</option>
-                    <option value={"metal"}>Metal</option>
+                    {genres.map((genre) => {
+                      return <option value={genre}>{genre}</option>;
+                    })}
                   </select>
                   <p className="error-message">{errors.genre?.message}</p>
                 </div>

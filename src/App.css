@@ -20,19 +20,17 @@
   left: 0;
 }
 
-.category-imgs {
+/* .category-imgs {
   width: 9rem;
   height: auto;
   margin-top: 2.2rem;
-  /* border-style: solid;
-  border-width: 0.1rem; */
 }
 
 .category-button {
   border-style: none;
   background-color: white;
   cursor: pointer;
-}
+} */
 
 .page-title {
   margin-top: 4rem;
@@ -177,7 +175,6 @@
   margin-bottom: 0.5rem;
 }
 
-.web-message,
 .web-message {
   margin-top: 2rem;
   font-family: "Raleway", sans-serif;
@@ -288,7 +285,7 @@
 }
 
 .logo3d {
-  margin-top: 3rem;
+  margin: 3rem 0;
   animation: rotateAnimation 3s linear infinite;
   width: 15rem;
   height: auto;
@@ -325,4 +322,61 @@
 
 .forgot-password-link:hover {
   color: rgb(90, 90, 90);
+}
+
+.genre-buttons {
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #cd4cde;
+  font-family: "Arial Black", Gadget, sans-serif;
+  text-shadow: 0px 0px 0 rgb(189, 60, 206), 0px 1px 0 rgb(173, 44, 190),
+    0px 2px 0 rgb(157, 28, 174), 0px 3px 0 rgb(141, 12, 158),
+    0px 4px 0 rgb(125, -4, 142), 0px 5px 0 rgb(109, -20, 126),
+    0px 6px 0 rgb(93, -36, 110), 0px 7px 0 rgb(77, -52, 94),
+    0px 8px 0 rgb(61, -68, 78), 0px 9px 8px rgba(0, 0, 0, 0.6),
+    0px 9px 1px rgba(0, 0, 0, 0.5), 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+
+.genre-buttons:hover {
+  color: #ee6bff;
+  text-shadow: 0px 0px 0 rgb(226, 95, 243), 0px 1px 0 rgb(214, 83, 231),
+    0px 2px 0 rgb(203, 72, 220), 0px 3px 0 rgb(191, 60, 208),
+    0px 4px 0 rgb(179, 48, 196), 0px 5px 0 rgb(167, 36, 184),
+    0px 6px 0 rgb(155, 24, 172), 0px 7px 0 rgb(144, 13, 161),
+    0px 8px 0 rgb(132, 1, 149), 0px 9px 0 rgb(120, -11, 137),
+    0px 10px 0 rgb(108, -23, 125), 0px 11px 10px rgba(0, 255, 64, 0.53),
+    0px 11px 1px rgba(0, 255, 64, 0.5), 0px 0px 10px rgba(0, 255, 64, 0.2);
+}
+
+.accordion {
+  font-family: "Raleway", sans-serif;
+  font-size: 1.3rem;
+}
+
+.remove-button {
+  background-color: #e61212;
+  border-radius: 28px;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: "Raleway", sans-serif;
+  font-size: 17px;
+  padding: 7px 21px;
+  text-decoration: none;
+  text-shadow: 0px 1px 0px #000000;
+  margin-left: 3rem;
+  position: relative;
+  bottom: 2rem;
+}
+
+.remove-button:hover {
+  background-color: #6e1212;
+}
+
+.warning {
+  font-family: "Raleway", sans-serif;
+  font-size: 2rem;
+  font-weight: bold;
 }

@@ -7,8 +7,9 @@ export default function Logout(props) {
   function logout() {
     Cookies.remove("userInfo");
     Cookies.remove("isSub");
+    Cookies.remove("jwtToken");
     props.setUserInfo("");
-    navigate(-1);
+    navigate("/");
   }
   return (
     <Modal className="register-login-modal" show={true}>

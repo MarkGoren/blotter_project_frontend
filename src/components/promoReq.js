@@ -37,7 +37,7 @@ export default function PromoReq() {
   }
 
   useEffect(() => {
-    if (!(userInfo && userInfo.isAdmin)) {
+    if (!userInfo.isAdmin) {
       navigate("/");
       return;
     }
