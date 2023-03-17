@@ -12,14 +12,14 @@ export default function Favorites() {
     : undefined;
   useEffect(() => {
     if (userInfo) {
-      Api.getFavPlaylists(userInfo).then((data) => setFavPlaylists(data));
+      Api.getFavPlaylists().then((data) => setFavPlaylists(data));
     }
   }, [userInfo]);
 
   function handleLike(e) {
-    let info = { userId: userInfo.id, playlistId: e.target.id };
+    let info = { playlistId: e.target.id };
     Api.removeFromFav(info).then(() => {
-      Api.getFavPlaylists(userInfo).then((data) => setFavPlaylists(data));
+      Api.getFavPlaylists().then((data) => setFavPlaylists(data));
     });
   }
   return (
@@ -30,7 +30,7 @@ export default function Favorites() {
         </div>
         {userInfo && favPlaylists[0] ? (
           <Row>
-            {favPlaylists.map((playlist) => (
+            {favPlaylists?.map((playlist) => (
               <Col
                 className="playlists flex-column"
                 style={{

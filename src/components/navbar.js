@@ -30,6 +30,9 @@ export default function BlotterNavbar(props) {
               <Nav.Link className="nav-link" href="/subMail">
                 Email Promotion
               </Nav.Link>
+              <Nav.Link className="nav-link" href="/playlistsManager">
+                Playlists Manager
+              </Nav.Link>
             </Nav>
           ) : (
             <Nav className="me-auto">
@@ -54,7 +57,7 @@ export default function BlotterNavbar(props) {
             </Nav>
           )}
           <Nav>
-            {props.userInfo.id ? (
+            {props.userInfo.username ? (
               <Nav.Item>
                 <Link
                   to="/logout"

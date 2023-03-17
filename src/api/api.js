@@ -61,8 +61,8 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
-  static async getFavorites(userInfo) {
-    return fetch(`http://localhost:3000/favorites/getAll/${userInfo.id}`, {
+  static async getFavorites() {
+    return fetch(`http://localhost:3000/favorites/getAll`, {
       credentials: "include",
     })
       .then((response) => response.json())
@@ -71,13 +71,10 @@ export default class Api {
       });
   }
 
-  static async getFavPlaylists(userInfo) {
-    return fetch(
-      `http://localhost:3000/favorites/getPlaylists/${userInfo.id}`,
-      {
-        credentials: "include",
-      }
-    )
+  static async getFavPlaylists() {
+    return fetch(`http://localhost:3000/favorites/getPlaylists`, {
+      credentials: "include",
+    })
       .then((response) => response.json())
       .then((data) => {
         return data;
@@ -106,13 +103,10 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
-  static async getLastReqDate(userInfo) {
-    return fetch(
-      `http://localhost:3000/promoRequests/lastReqDate/${userInfo.id}`,
-      {
-        credentials: "include",
-      }
-    )
+  static async getLastReqDate() {
+    return fetch(`http://localhost:3000/promoRequests/lastReqDate`, {
+      credentials: "include",
+    })
       .then((response) => response.json())
       .then((data) => {
         return data;
@@ -162,24 +156,20 @@ export default class Api {
       .catch((err) => console.log(err));
   }
 
-  static async getAllUserPromoRequests(userInfo) {
-    return fetch(
-      `http://localhost:3000/userPromoPlaylists/getAll/${userInfo.id}`,
-      {
-        credentials: "include",
-      }
-    )
+  static async getAllUserPromoRequests() {
+    return fetch(`http://localhost:3000/userPromoPlaylists/getAll`, {
+      credentials: "include",
+    })
       .then((response) => response.json())
       .then((data) => {
         return data;
       });
   }
 
-  static async userSubscribe(userInfo) {
+  static async userSubscribe() {
     return fetch("http://localhost:3000/users/subscribe", {
-      method: "POST",
+      method: "PUT",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userInfo),
       credentials: "include",
     })
       .then((res) => res)
@@ -213,6 +203,42 @@ export default class Api {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(password),
+      credentials: "include",
+    })
+      .then((res) => res)
+      .catch((err) => console.log(err));
+  }
+
+  static async getAllGenres() {
+    return fetch(`http://localhost:3000/playlists/getAllGenres`, {
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      });
+  }
+
+  static async deletePlaylistById(playlistId) {
+    return fetch(
+      `http://localhost:3000/playlists/deletePlaylist/${playlistId}`,
+      {
+        credentials: "include",
+        method: "DELETE",
+      }
+    )
+      .then((response) => response.json())
+      .then((data) => {
+        return data;
+      })
+      .catch((err) => console.log(err));
+  }
+
+  static async addPlaylist(info) {
+    return fetch("http://localhost:3000/playlists/addPlaylist", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(info),
       credentials: "include",
     })
       .then((res) => res)

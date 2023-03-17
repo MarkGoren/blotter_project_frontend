@@ -19,14 +19,14 @@ export default function Category(props) {
 
   function handleLike(e) {
     if (userInfo) {
-      let info = { userId: userInfo.id, playlistId: e.target.id };
-      if (props.favorites.indexOf(parseInt(e.target.id)) > -1) {
+      let info = { playlistId: e.target.id };
+      if (props.favorites?.indexOf(parseInt(e.target.id)) > -1) {
         Api.removeFromFav(info).then(() => {
-          Api.getFavorites(userInfo).then((data) => props.setFavorites(data));
+          Api.getFavorites().then((data) => props.setFavorites(data));
         });
       } else {
         Api.addToFav(info).then(() => {
-          Api.getFavorites(userInfo).then((data) => props.setFavorites(data));
+          Api.getFavorites().then((data) => props.setFavorites(data));
         });
       }
     } else {
@@ -52,7 +52,7 @@ export default function Category(props) {
             >
               <div className="genre-and-like">
                 <span className="playlist-genre">{playlist.name}</span>
-                {props.favorites.indexOf(playlist.id) > -1 ? (
+                {props.favorites?.indexOf(playlist.id) > -1 ? (
                   <i
                     className="fa fa-heart like-button"
                     aria-hidden="true"

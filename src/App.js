@@ -20,6 +20,7 @@ import Subscribe from "./components/subscribe";
 import SubMail from "./components/subMail";
 import ForgotPassword from "./components/forgotPassword";
 import ChangePassword from "./components/changePassword";
+import PlaylistsManager from "./components/playlistsManager";
 
 function App() {
   const location = useLocation();
@@ -30,9 +31,7 @@ function App() {
   useEffect(() => {
     if (Cookies.get("userInfo")) {
       setUserInfo(JSON.parse(Cookies.get("userInfo").slice(2)));
-      Api.getFavorites(JSON.parse(Cookies.get("userInfo").slice(2))).then(
-        (data) => setFavorites(data)
-      );
+      Api.getFavorites().then((data) => setFavorites(data));
     } else {
       setUserInfo({});
     }
@@ -68,6 +67,7 @@ function App() {
         <Route path="/subscribe" element={<Subscribe />} />
         <Route path="/subMail" element={<SubMail />} />
         <Route path="/changePassword" element={<ChangePassword />} />
+        <Route path="/playlistsManager" element={<PlaylistsManager />} />
       </Routes>
       <Footer />
       {background && (

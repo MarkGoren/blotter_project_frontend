@@ -12,7 +12,7 @@ export default function UserPromos() {
     : undefined;
   useEffect(() => {
     if (userInfo) {
-      Api.getAllUserPromoRequests(userInfo).then((data) =>
+      Api.getAllUserPromoRequests().then((data) =>
         setUserPromoPlaylists(() => data)
       );
     }

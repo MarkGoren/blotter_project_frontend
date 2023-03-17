@@ -28,26 +28,15 @@ export default function Login(props) {
 
   function handleLogin(loginInfo) {
     setMessage("");
-    if (loginInfo.email.includes("blotteradmin")) {
-      Api.adminLogin(loginInfo).then(() => {
-        if (Cookies.get("userInfo")) {
-          props.setUserInfo(JSON.parse(Cookies.get("userInfo").slice(2)));
-          navigate(-1);
-        } else {
-          setMessage("⚠ email or password incorrect");
-        }
-      });
-    } else {
-      Api.userLogin(loginInfo).then(() => {
-        // i had to slice the cookie value because it started with 'j:'
-        if (Cookies.get("userInfo")) {
-          props.setUserInfo(JSON.parse(Cookies.get("userInfo").slice(2)));
-          navigate(-1);
-        } else {
-          setMessage("⚠ email or password incorrect or unverified account");
-        }
-      });
-    }
+    Api.userLogin(loginInfo).then(() => {
+      // i had to slice the cookie value because it started with 'j:'
+      if (Cookies.get("userInfo")) {
+        props.setUserInfo(JSON.parse(Cookies.get("userInfo").slice(2)));
+        navigate(-1);
+      } else {
+        setMessage("⚠ email or password incorrect or unverified account");
+      }
+    });
   }
   return (
     <Modal className="register-login-modal" show={true}>
